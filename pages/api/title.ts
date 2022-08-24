@@ -1,15 +1,17 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
 import { launchChromium } from "playwright-aws-lambda";
 import type { ChromiumBrowser } from "playwright-core";
 
+type Err = {
+  message: string;
+};
 type Data = {
   title: string;
 };
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data>
+  res: NextApiResponse<Err | Data>
 ) {
   let browser: ChromiumBrowser = null!;
 
@@ -24,9 +26,9 @@ export default async function handler(
     res.status(200).json({ title });
   } catch (error) {
     if (error instanceof Error) {
-      res.status(500).json({ title: error.message });
+      res.status(500).json({ message: error.message });
     } else {
-      res.status(500).json({ title: "Unknown error" });
+      res.status(500).json({ message: "Unknown error" });
     }
   } finally {
     if (browser) {
