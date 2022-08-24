@@ -8,5 +8,21 @@ curl -X POST -d 'username=xxxxxxxxxxx' -d 'password=xxxxxxxxxxx' https://tokenpa
 ```
 
 ```json
-{"session_token":"xxxxxxxxxxxxxxxxxxxx"}
+{
+    "MoodleSession2022": "xxxxxxxxxxxxxxxx"
+}
+```
+
+- twins
+
+```bash
+curl -X POST -d 'username=xxxxxxxxxxx' -d 'password=xxxxxxxxxxx' http://localhost:3000/api/tsukuba/twins/session
+curl -X POST -d 'username=xxxxxxxxxxx' -d 'password=xxxxxxxxxxx' https://tokenpack.vercel.app/api/tsukuba/twins/session
+```
+
+```json
+{
+    "campus-twins": "xxxxxxxxxxxxxxx",
+    "JSESSIONID": "xxxxxxxxxxxxxxx",
+}
 ```
