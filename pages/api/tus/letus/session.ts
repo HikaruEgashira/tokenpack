@@ -3,11 +3,10 @@ import { launchChromium } from "playwright-aws-lambda";
 import type { ChromiumBrowser } from "playwright-core";
 import z from "zod";
 
+const cookieNames = <const>["MoodleSession2022"];
+type Data = Record<typeof cookieNames[number], string>;
 type Err = {
   message: string;
-};
-type Data = {
-  session_token: string;
 };
 
 const LOGIN_URL = "https://letus.ed.tus.ac.jp/";
@@ -45,15 +44,13 @@ export default async function handler(
     ]);
     const cookies = await context.cookies();
 
-    const sessionToken = cookies.find(
-      (cookie) => cookie.name === "MoodleSession2022"
-    )?.value;
-    if (!sessionToken) {
-      res.status(401).json({ message: "Invalid username or password" });
-      return;
-    }
+    const data = cookieNames.reduce<Data>((acc, name) => {
+      const cookie = cookies.find((cookie) => cookie.name === name);
+      if (!cookie) throw new Error(`Cookie ${name} not found`);
+      return { ...acc, [name]: cookie.value };
+    }, {} as Data);
 
-    res.status(200).json({ session_token: sessionToken });
+    res.status(200).json(data);
   } catch (error) {
     if (error instanceof Error) {
       res.status(500).json({ message: error.message });
