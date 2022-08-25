@@ -1,16 +1,10 @@
-import type { NextPage } from "next";
-import Head from "next/head";
+import { NextPage } from "next";
+import dynamic from "next/dynamic";
+const SwaggerUI = dynamic(import("swagger-ui-react"), { ssr: false });
+import "swagger-ui-react/swagger-ui.css";
 
-const Home: NextPage = () => {
-  return (
-    <div>
-      <Head>
-        <title>TokenPack</title>
-      </Head>
-
-      <main>200 ok</main>
-    </div>
-  );
+const Swagger: NextPage = () => {
+  return <SwaggerUI url="/api/doc.json" />;
 };
 
-export default Home;
+export default Swagger;

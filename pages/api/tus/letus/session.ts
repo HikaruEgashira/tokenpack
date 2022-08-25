@@ -30,14 +30,14 @@ export default async function handler(
   }
 
   try {
-    const params = LOGIN_SCHEME.parse(req.body);
+    const body = LOGIN_SCHEME.parse(req.body);
 
     browser = await launchChromium({ headless: true });
     const context = await browser.newContext();
     const page = await context.newPage();
     await page.goto(LOGIN_URL);
-    await page.fill(LOGIN_SELECTOR.username, params.username);
-    await page.fill(LOGIN_SELECTOR.password, params.password);
+    await page.fill(LOGIN_SELECTOR.username, body.username);
+    await page.fill(LOGIN_SELECTOR.password, body.password);
     await Promise.all([
       page.waitForNavigation(),
       page.click("input[type=submit]"),

@@ -1,0 +1,108 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "0.1.0",
+    "title": "tokenpack"
+  },
+  "paths": {
+    "/api/tus/letus/session": {
+      "post": {
+        "parameters": [
+          {
+            "name": "username",
+            "description": "ユーザーID",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "password",
+            "description": "サービスのパスワード",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "必要なセッション情報。これをCookieに入れるとログインされます。",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "MoodleSession2022": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "何かしらの問題が発生した場合",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/tsukuba/twins/session": {
+      "post": {
+        "parameters": [
+          {
+            "name": "username",
+            "description": "ユーザーID",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "password",
+            "description": "サービスのパスワード",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "必要なセッション情報。これをCookieに入れるとログインされます。",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "campus-twins": {
+                  "type": "string"
+                },
+                "JSESSIONID": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "何かしらの問題が発生した場合",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
