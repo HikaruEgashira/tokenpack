@@ -14,14 +14,14 @@
     "playwright-core": "1.25.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "swagger-ui-react": "4.14.0",
+    "swagger-ui-react": "4.19.1",
     "zod": "3.18.0"
   },
   "devDependencies": {
     "@types/node": "18.7.13",
     "@types/react": "18.0.17",
     "@types/react-dom": "18.0.6",
-    "@types/swagger-ui-react": "4.11.0",
+    "@types/swagger-ui-react": "4.18.1",
     "eslint": "8.22.0",
     "eslint-config-next": "12.2.5",
     "typescript": "4.7.4"
